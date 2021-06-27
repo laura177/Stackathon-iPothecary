@@ -42,16 +42,23 @@ const theme = {
   }
 }
 export default class MyMeds extends React.Component {
-  constructor(){
-    super()
+  constructor() {
+    super();
     this.state = {
-      visible: false
-    }
+      visible: false,
+    };
   }
-  _openMenu = () => this.setState({visible: true})
-  _closeMenu = () => this.setState({visible: false})
-  render(){
+  _openMenu = () => this.setState({visible: true});
+  _closeMenu = () => this.setState({visible: false});
 
+  // addItemMenu(){
+  //   <PaperProvider>
+  //     <View style={{paddingTop: 50, flexDirection: 'row', justifyContent: 'center'}} />
+  //     <Menu visible={this.state.visible} onDismiss={this._closeMenu}></Menu>
+  //   </PaperProvider>
+  // }
+
+  render() {
     return (
       <SafeAreaView>
         <Appbar.Header>
