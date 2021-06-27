@@ -43,17 +43,22 @@ export default function Home({navigation}){
         style={{height: 100, width: 100, marginTop: -300}}
       />
       <Divider />
-      <Text style={{fontFamily: 'HelveticaNeue', fontSize: 25}}>Welcome to iPothecary</Text>
+      <Text style={{fontFamily: 'HelveticaNeue', fontSize: 25}}>
+        Welcome to iPothecary
+      </Text>
       <Pressable
         onPress={() => navigation.navigate('MyMeds')}
-        style={{ backgroundColor: 'powderblue', padding: 26, marginBottom: 10, marginTop: 10 }}
-      >
+        style={{
+          backgroundColor: 'powderblue',
+          padding: 26,
+          marginBottom: 10,
+          marginTop: 10,
+        }}>
       <Text>My Meds</Text>
       </Pressable>
       <Pressable
         onPress={() => navigation.navigate('Camera')}
-        style={{ backgroundColor: 'powderblue', padding: 30}}
-        >
+        style={{backgroundColor: 'powderblue', padding: 30}}>
        <Text>Camera</Text>
       </Pressable>
     </View>
