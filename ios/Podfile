@@ -11,6 +11,9 @@ target 'iPothecary' do
     # to enable hermes on iOS, change `false` to `true` and then install pods
     :hermes_enabled => false
   )
+  pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
+  'TextDetector'
+]
 
   target 'iPothecaryTests' do
     inherit! :complete
