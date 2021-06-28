@@ -19,6 +19,7 @@ export default class Camera extends React.Component {
   constructor() {
         super()
         this.state = {
+            captureAudio: false,
             canDetectText: true,
             textBlocks: [],
         };

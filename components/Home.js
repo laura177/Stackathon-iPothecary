@@ -21,16 +21,16 @@ const bottleLogo = {
   uri: 'https://image.flaticon.com/icons/png/512/30/30351.png',
 };
 
-function CustomNavigationBar(){
+function CustomNavigationBar() {
     return (
         <Appbar.Header>
-            <Appbar.Content title='iPothecary' />
+      <Appbar.Content title="iPothecary" />
         </Appbar.Header>
-    )
+    );
 }
 
-export default function Home({navigation}){
-    return(
+export default function Home({navigation}) {
+  return (
     <View
       style={{
         flex: 1,
@@ -54,7 +54,7 @@ export default function Home({navigation}){
           marginBottom: 10,
           marginTop: 10,
         }}>
-      <Text>My Meds</Text>
+        <Text>My Meds</Text>
       </Pressable>
       <Pressable
         onPress={() => navigation.navigate('Camera')}
@@ -62,5 +62,5 @@ export default function Home({navigation}){
        <Text>Camera</Text>
       </Pressable>
     </View>
-    )
+  );
 }

@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -8,23 +9,22 @@ import {
   useColorScheme,
   View,
   Platform,
+  TextInput,
+  Button,
 } from 'react-native';
 // import Grid from 'react-native-grid-component';
 import {
   DefaultTheme,
   DataTable,
   Provider as PaperProvider,
-  Button,
   Title,
   Paragraph,
   IconButton,
   Colors,
   Appbar,
-  Menue,
+  Menu,
   Divider,
 } from 'react-native-paper';
-
-//modal to show info re med when selected??
 
 import {
   Tabs,
@@ -33,44 +33,68 @@ import {
   useTabNavigation,
 } from 'react-native-paper-tabs';
 
+import Modal from 'react-native-modal';
+import AddMed from './AddMed';
+
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
     primary: 'powderblue',
     accent: 'black',
-  }
-}
-export default class MyMeds extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      visible: false,
-    };
-  }
-  _openMenu = () => this.setState({visible: true});
-  _closeMenu = () => this.setState({visible: false});
+  },
+};
 
-  // addItemMenu(){
-  //   <PaperProvider>
-  //     <View style={{paddingTop: 50, flexDirection: 'row', justifyContent: 'center'}} />
-  //     <Menu visible={this.state.visible} onDismiss={this._closeMenu}></Menu>
-  //   </PaperProvider>
-  // }
+const data = [
+  {name: 'Vicodin', time: 'Morning', qty: 2},
+  {name: 'Vitamin C', time: 'Noon', qty: 2},
+];
 
-  render() {
+const MyMeds = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
     return (
+    <PaperProvider>
       <SafeAreaView>
-        <Appbar.Header>
+        <Appbar.Header style={{backgroundColor: 'powderblue'}}>
           <Appbar.Content
             title="Meds Manager"
             subtitle="Add and Organize Meds"
           />
-          <Appbar.Action icon="plus" onPress={() => {}} />
+          <Appbar.Action icon="plus" onPress={toggleModal} />
+          <Modal
+            animationOutTiming={500}
+            animationOut={'slideOutUp'}
+            style={{marginTop: 60, marginBottom: 60, padding: 20}}
+            isVisible={isModalVisible}>
+            <View style={styles.container}>
+            <View>
+            <Text style={{textAlign: 'center', fontSize: 20, fontFamily: 'Helvetica'}}>Add Medication</Text>
+            <View>
+                <TextInput placeholder="Name" style={{height: 50, margin: 20, width: 250, borderWidth: 1, backgroundColor: 'powderblue'}} />
+                <TextInput placeholder="Time" style={{height: 50, margin: 20, width: 250, borderWidth: 1, backgroundColor: 'powderblue'}} />
+                <TextInput placeholder="Quantity" keyboardType='numeric' style={{height: 50, margin: 20, width: 250, borderWidth: 1, backgroundColor: 'powderblue'}} />
+            </View>
+            <View>
+                <Button title="Submit" onPress={toggleModal} />
+                <Button title="Cancel" onPress={toggleModal} />
+              </View>
+        </View>
+            </View>
+          </Modal>
+          {/* <Menu visible={this.state.visible} onDismiss={this._closeMenu} anchor={<Appbar.Action icon="plus" onPress={this._openMenu} />}> */}
+          <Menu>
+            <Menu.Item onPress={() => {}} title="Name" />
+            <Menu.Item onPress={() => {}} title="Time" />
+            <Menu.Item onPress={() => {}} title="Qty" />
+          </Menu>
         </Appbar.Header>
         <ScrollView>
           <PaperProvider theme={theme}>
-            <DataTable>
+            <DataTable style={{backgroundColor: 'aliceblue'}}>
             <DataTable.Header>
                 <DataTable.Title sortDirection="descending">
                   Name
@@ -119,7 +143,7 @@ export default class MyMeds extends React.Component {
               <DataTable.Cell numeric>1</DataTable.Cell>
               </DataTable.Row>
               <DataTable.Row>
-              <DataTable.Cell>Vitamin C</DataTable.Cell>
+                <DataTable.Cell>Vitamin C</DataTable.Cell>
               <DataTable.Cell>Noon</DataTable.Cell>
               <DataTable.Cell numeric>1</DataTable.Cell>
               </DataTable.Row>
@@ -139,7 +163,7 @@ export default class MyMeds extends React.Component {
               <DataTable.Cell numeric>1</DataTable.Cell>
               </DataTable.Row>
               <DataTable.Row>
-              <DataTable.Cell>Keppra</DataTable.Cell>
+                <DataTable.Cell>Keppra</DataTable.Cell>
               <DataTable.Cell>Evening</DataTable.Cell>
               <DataTable.Cell numeric>1</DataTable.Cell>
               </DataTable.Row>
@@ -172,6 +196,16 @@ export default class MyMeds extends React.Component {
           </PaperProvider>
         </ScrollView>
       </SafeAreaView>
-    );
-  }
-}
+      </PaperProvider>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'aliceblue',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+export default MyMeds;

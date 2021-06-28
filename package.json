@@ -22,6 +22,7 @@
     "react-native-data-grid": "^1.1.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-grid-component": "^2.0.1",
+    "react-native-modal": "^12.0.2",
     "react-native-pager-view": "^5.2.1",
     "react-native-paper": "^4.9.2",
     "react-native-paper-tabs": "^0.4.2",
